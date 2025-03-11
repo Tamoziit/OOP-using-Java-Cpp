@@ -9,20 +9,24 @@ public:
 
     Complex(float r, float c)
     {
-        real = r;
-        complex = c;
+        this->real = r;
+        this->complex = c;
     }
 
-    Complex add(Complex a, Complex b)
+    Complex add(Complex a)
     {
-        return Complex(a.real + b.real, a.complex + b.complex);
+        Complex res(0, 0);
+        res.real = real + a.real;
+        res.complex = complex + a.complex;
+        return res;
     }
 
-    Complex multiply(Complex a, Complex b)
+    Complex multiply(Complex a)
     {
-        float realPart = (a.real * b.real) - (a.complex * b.complex);
-        float complexPart = (a.real * b.complex) + (a.complex * b.real);
-        return Complex(realPart, complexPart);
+        Complex res(0, 0);
+        res.real = (real * a.real) - (complex * a.complex);
+        res.complex = (real * a.complex) + (complex * a.real);
+        return res;
     }
 
     void display()
@@ -45,8 +49,8 @@ int main()
         Complex num1 = testCases[i][0];
         Complex num2 = testCases[i][1];
 
-        Complex resultAdd = resultAdd.add(num1, num2);
-        Complex resultMul = resultMul.multiply(num1, num2);
+        Complex resultAdd = num1.add(num2);
+        Complex resultMul = num1.multiply(num2);
 
         cout << "Test Case " << i + 1 << ":" << endl;
         cout << "Addition: ";
